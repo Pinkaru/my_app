@@ -1,15 +1,25 @@
 {
   "name": "myapp",
-  "version": "1.0.0",
-  "description": "this is myapp",
+  "version": "2.0.0",
+  "description": "Modern visitor counter web application",
   "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pinkaru/my_app.git"
   },
+  "keywords": [
+    "express",
+    "mongodb",
+    "visitor-counter"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -17,9 +27,18 @@
   },
   "homepage": "https://github.com/Pinkaru/my_app#readme",
   "dependencies": {
-    "ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "mongoose": "^4.4.15"
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }

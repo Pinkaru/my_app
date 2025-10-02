@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Counter</title>
+    <link rel="stylesheet" href="/stylesheets/master.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>방문자 카운터</h1>
+      <div class="counter">
+        <p>방문 횟수: <span class="count"><%= count %></span></p>
+      </div>
+      <div class="actions">
+        <a href="/reset" class="button">초기화</a>
+        <a href="/set/count?count=100" class="button">100으로 설정</a>
+      </div>
+    </div>
+  </body>
+</html>
