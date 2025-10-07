@@ -1,9 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18-alpine'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     environment {
         NODE_ENV = 'test'
         MONGODB_URI = 'mongodb://localhost:27017/myapp_test'
+        HOME = "${WORKSPACE}"
+        npm_config_cache = "${WORKSPACE}/.npm"
     }
 
     stages {
