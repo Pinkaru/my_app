@@ -88,7 +88,7 @@ pipeline {
     post {
         success {
             echo '✅ Pipeline completed successfully!'
-            echo '📊 Build artifacts created in dist/'
+            echo '📊 Archiving build artifacts...'
             archiveArtifacts artifacts: 'dist/*.tar.gz', fingerprint: true
         }
         failure {
@@ -100,8 +100,7 @@ pipeline {
                 deleteDirs: true,
                 patterns: [
                     [pattern: 'node_modules', type: 'INCLUDE'],
-                    [pattern: 'coverage', type: 'INCLUDE'],
-                    [pattern: 'dist', type: 'INCLUDE']
+                    [pattern: 'coverage', type: 'INCLUDE']
                 ]
             )
         }
