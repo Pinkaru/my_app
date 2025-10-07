@@ -143,14 +143,19 @@ app.use((req, res) => {
   res.status(404).send('Page not found');
 });
 
-// Start server
-const startServer = async () => {
-  await connectDB();
-  await initializeCounter();
+// Export for testing
+export { app, connectDB, initializeCounter, Data };
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-  });
-};
+// Start server only if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  const startServer = async () => {
+    await connectDB();
+    await initializeCounter();
 
-startServer();
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
+  };
+
+  startServer();
+}

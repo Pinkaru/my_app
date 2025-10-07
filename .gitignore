@@ -25,3 +25,11 @@ Thumbs.db
 # Build output
 dist/
 build/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# MongoDB memory server
+.mongodb-binaries/
+.cache/
