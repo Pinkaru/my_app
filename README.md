@@ -83,6 +83,69 @@ my_app/
         └── master.css # Styles
 ```
 
+## Testing
+
+The project includes comprehensive unit and integration tests using Jest and Supertest.
+
+### Running Tests
+
+Run all tests:
+```bash
+npm test
+```
+
+Run unit tests only:
+```bash
+npm run test:unit
+```
+
+Run integration tests only:
+```bash
+npm run test:integration
+```
+
+Generate coverage report:
+```bash
+npm run test:coverage
+```
+
+Run tests in watch mode:
+```bash
+npm run test:watch
+```
+
+### Test Structure
+
+```
+test/
+├── unit/               # Unit tests
+│   ├── models/        # MongoDB model tests
+│   └── services/      # Business logic tests
+├── integration/       # Integration tests
+│   ├── routes/        # API endpoint tests
+│   └── e2e.test.js   # End-to-end scenarios
+└── helpers/           # Test utilities
+```
+
+### Running Tests with Docker
+
+For integration tests that require MongoDB:
+
+1. Start the test MongoDB container:
+```bash
+docker-compose -f docker-compose.test.yml up -d
+```
+
+2. Run the tests:
+```bash
+npm test
+```
+
+3. Stop the container:
+```bash
+docker-compose -f docker-compose.test.yml down -v
+```
+
 ## Code Quality
 
 Run linting:
@@ -90,10 +153,56 @@ Run linting:
 npm run lint
 ```
 
+Auto-fix linting issues:
+```bash
+npm run lint:fix
+```
+
 Format code:
 ```bash
 npm run format
 ```
+
+Check formatting:
+```bash
+npm run format:check
+```
+
+## CI/CD Pipeline
+
+This project uses Jenkins for continuous integration and delivery. The pipeline includes:
+
+### Pipeline Stages
+
+1. **Checkout** - Clone source code from repository
+2. **Setup** - Install Node.js dependencies
+3. **Lint** - Run ESLint for code quality
+4. **Format Check** - Verify code formatting with Prettier
+5. **Start Test Database** - Launch MongoDB container for testing
+6. **Unit Tests** - Run isolated unit tests
+7. **Integration Tests** - Run API and database integration tests
+8. **Test Coverage** - Generate code coverage report
+9. **Build** - Prepare production build
+10. **Archive Artifacts** - Store build artifacts
+
+### Build Status
+
+The Jenkins pipeline automatically runs on every push to the repository. Build status is reported back to GitHub via commit statuses.
+
+### Pipeline Configuration
+
+The pipeline is configured in `Jenkinsfile` and uses:
+- Docker Compose for test database
+- Jest for testing framework
+- ESLint & Prettier for code quality
+- Automated cleanup after each build
+
+### Test Environment
+
+Tests run in an isolated environment with:
+- MongoDB 7 in Docker container
+- Separate test database (`myapp_test`)
+- In-memory MongoDB for fast unit tests
 
 ## Changes from Legacy Version
 
